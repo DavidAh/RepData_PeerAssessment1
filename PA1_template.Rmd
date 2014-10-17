@@ -44,7 +44,11 @@ d3[which.max(d3$steps),]
  
 
 ## Imputing missing values
-There are xxx NA values in the data. To imput the missing values, the average number of steps is computed for each 5 minute interval and the used to replace any NAs for that 5 minute interval.
+```{r}
+sum(is.na(data$steps))
+```
+
+There are NA values in the data. To imput the missing values, the average number of steps is computed for each 5 minute interval and the used to replace any NAs for that 5 minute interval.
 
 ```{r}
 names(d3) <- c("interval", "avg_steps")

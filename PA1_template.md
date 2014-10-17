@@ -1,4 +1,9 @@
-# Reproducible Research: Peer Assessment 1
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 
 This is an R Markdown document for assignment 1 of the Coursera Reproducible Research course to analyze the data from a personal activity monitoring device.  The personal activity data for the assignment was obtained from the course website at: https://d396qusza40orc.cloudfront.ne/repdata%2Fdata%2Factivity.zip.  The data was downloaded and read using the following code: 
 
@@ -22,7 +27,7 @@ d2$date <- strptime(d2$date, "%Y-%m-%d")
 hist(x=d2$steps, main = "Steps per day", xlab = "Day", ylab = "Frequency", col = "blue", freq=TRUE)
 ```
 
-![](./PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
 
 ```r
 mean(d2$steps)
@@ -50,7 +55,7 @@ d3 <- aggregate(. ~ interval, data[,c(TRUE,FALSE,TRUE)], FUN=mean)
 plot(x=d3$interval, y=d3$steps, xlab="Interval", ylab="Steps", type = "l")
 ```
 
-![](./PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 From the time series plot, the 5 minute interval that contains the maximum number of steps on average is obtained by
 
@@ -65,7 +70,16 @@ d3[which.max(d3$steps),]
  
 
 ## Imputing missing values
-There are xxx NA values in the data. To imput the missing values, the average number of steps is computed for each 5 minute interval and the used to replace any NAs for that 5 minute interval.
+
+```r
+sum(is.na(data$steps))
+```
+
+```
+## [1] 2304
+```
+
+There are NA values in the data. To imput the missing values, the average number of steps is computed for each 5 minute interval and the used to replace any NAs for that 5 minute interval.
 
 
 ```r
@@ -78,7 +92,7 @@ d2$date <- strptime(d2$date, "%Y-%m-%d")
 hist(x=d2$steps, main = "Steps per day", xlab = "Day", ylab = "Frequency", col = "blue", freq=TRUE)
 ```
 
-![](./PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 
 The new mean and media for the imputed data set is:
 
@@ -133,4 +147,4 @@ new_data <- rbind(weekday_data, weekend_data)
 xyplot(steps ~ interval | day_type, new_data, type = "l", identifier = "Weekday", group = day_type, horizontal = FALSE)
 ```
 
-![](./PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
