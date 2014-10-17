@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 This is an R Markdown document for assignment 1 of the Coursera Reproducible Research course to analyze the data from a personal activity monitoring device.  The personal activity data for the assignment was obtained from the course website at: https://d396qusza40orc.cloudfront.ne/repdata%2Fdata%2Factivity.zip.  The data was downloaded and read using the following code: 
 
@@ -27,7 +22,7 @@ d2$date <- strptime(d2$date, "%Y-%m-%d")
 hist(x=d2$steps, main = "Steps per day", xlab = "Day", ylab = "Frequency", col = "blue", freq=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![](./PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
 
 ```r
 mean(d2$steps)
@@ -55,7 +50,7 @@ d3 <- aggregate(. ~ interval, data[,c(TRUE,FALSE,TRUE)], FUN=mean)
 plot(x=d3$interval, y=d3$steps, xlab="Interval", ylab="Steps", type = "l")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](./PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 From the time series plot, the 5 minute interval that contains the maximum number of steps on average is obtained by
 
@@ -83,7 +78,7 @@ d2$date <- strptime(d2$date, "%Y-%m-%d")
 hist(x=d2$steps, main = "Steps per day", xlab = "Day", ylab = "Frequency", col = "blue", freq=TRUE)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![](./PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
 
 The new mean and media for the imputed data set is:
 
@@ -103,6 +98,8 @@ median(d2$steps)
 ```
 ## [1] 10766.19
 ```
+
+Imputing the average for the interval into the missing data entries eliminated differences between the mean and median.  In the raw data there's a slight difference between the mean and the median. For the imputed data, the mean and median are identical.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 A panel plot of the weekday vs. weekend data shows more activity on a weekday morning vs. a weekend morning.
@@ -136,4 +133,4 @@ new_data <- rbind(weekday_data, weekend_data)
 xyplot(steps ~ interval | day_type, new_data, type = "l", identifier = "Weekday", group = day_type, horizontal = FALSE)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+![](./PA1_template_files/figure-html/unnamed-chunk-7-1.png) 

@@ -63,6 +63,8 @@ mean(d2$steps)
 median(d2$steps)
 ```
 
+Imputing the average for the interval into the missing data entries eliminated differences between the mean and median.  In the raw data there's a slight difference between the mean and the median. For the imputed data, the mean and median are identical.
+
 ## Are there differences in activity patterns between weekdays and weekends?
 A panel plot of the weekday vs. weekend data shows more activity on a weekday morning vs. a weekend morning.
 
